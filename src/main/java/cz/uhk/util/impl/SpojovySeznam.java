@@ -2,6 +2,8 @@ package cz.uhk.util.impl;
 
 import cz.uhk.util.Seznam;
 
+import java.util.Iterator;
+
 public class SpojovySeznam<E> implements Seznam<E> {
     private PrvekSeznamu<E> prvni, posledni;
 
@@ -47,6 +49,23 @@ public class SpojovySeznam<E> implements Seznam<E> {
             pocet++;
         }
         return pocet;
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return new Iterator<E>() {
+            PrvekSeznamu<E> current = prvni;
+            @Override
+            public boolean hasNext() {
+                return current.dalsi != null;
+            }
+
+            @Override
+            public E next() {
+                current = current.dalsi;
+                return current.hodnota;
+            }
+        };
     }
 }
 

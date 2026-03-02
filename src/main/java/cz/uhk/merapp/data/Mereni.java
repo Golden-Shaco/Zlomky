@@ -1,13 +1,13 @@
 package cz.uhk.merapp.data;
 
-import java.util.List;
-import java.util.ArrayList;
+import cz.uhk.util.Seznam;
+import cz.uhk.util.impl.SpojovySeznam;
 
 public class Mereni {
-    private List<Number> data = new ArrayList<Number>();
+    private Seznam<Number> data = new SpojovySeznam<>();
 
     public void pridat(Number n) {
-        data.add(n);
+        data.pridej(n);
     }
 
     public Number secist() {
@@ -19,11 +19,11 @@ public class Mereni {
     }
 
     public Number prumer() {
-        return secist().doubleValue() / data.size();
+        return secist().doubleValue() / data.pocet();
     }
 
     public Number max() {
-        Number max = data.getFirst();
+        Number max = data.vrat(0);
         for (Number n : data){
             if (n.doubleValue() > max.doubleValue())
                 max = n;
@@ -32,7 +32,7 @@ public class Mereni {
     }
 
     public Number min() {
-        Number min = data.getFirst();
+        Number min = data.vrat(0);
         for (Number n : data){
             if (n.doubleValue() < min.doubleValue())
                 min = n;
@@ -41,10 +41,10 @@ public class Mereni {
     }
 
     public Number get(int index) {
-        return data.get(index);
+        return data.vrat(index);
     }
 
     public int size() {
-        return data.size();
+        return data.pocet();
     }
 }
