@@ -1,4 +1,6 @@
-import zlomky.Zlomek;
+package cz.uhk;
+
+import cz.uhk.zlomky.Zlomek;
 
 public class Main {
     static void main() {
@@ -21,6 +23,9 @@ public class Main {
         };
         Zlomek ap = prumer(pole);
         IO.println("Aritmetický průměr: %s".formatted(ap.toString()));
+
+        int prumerRaunded = ap.intValue();
+        IO.println("Zaokrouhlen: %d".formatted(prumerRaunded));
     }
 
     private static Zlomek prumer(Zlomek[] pole) {
