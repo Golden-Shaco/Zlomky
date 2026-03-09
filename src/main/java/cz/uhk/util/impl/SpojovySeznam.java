@@ -20,14 +20,18 @@ public class SpojovySeznam<E> implements Seznam<E> {
 
     @Override
     public void pridej(E hodnota, int pozice) {
-        if (pozice > pocet() || pozice < 0) {
+        if (pozice > pocet() - 1 || pozice < 0) {
             return;
         }
         var temp = new PrvekSeznamu<E>(hodnota);
+        if (prvni == null) {
+            prvni = posledni = temp;
+            return;
+        }
         if (pozice == 0) {
             temp.dalsi = prvni;
             prvni = temp;
-        } else if (pozice == pocet()) {
+        } else if (pozice == pocet() - 1) {
             posledni.dalsi = temp;
             posledni = temp;
         } else {
